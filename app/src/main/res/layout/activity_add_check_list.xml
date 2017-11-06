@@ -21,10 +21,12 @@
             android:layout_alignParentBottom="false">
 
             <TextView
+                android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Series"
-                android:id="@+id/textView5" />
+                android:textColor="@android:color/black"
+                android:textSize="18sp"/>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -32,25 +34,25 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:id="@+id/editText3"
-                    android:hint="ODO"
-                    android:inputType="number" />
-
-                <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/odo"
+                    android:inputType="number"/>
+
+                <EditText
                     android:id="@+id/editText4"
-                    android:hint="Presure"
-                    android:inputType="number" />
-
-                <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/pressure"
+                    android:inputType="number"/>
+
+                <EditText
                     android:id="@+id/editText5"
-                    android:hint="Deep Tread"
-                    android:inputType="numberDecimal" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/deep_tread"
+                    android:inputType="numberDecimal"/>
 
                 <Spinner
                     android:layout_width="match_parent"
@@ -73,14 +75,14 @@
                     android:spinnersShown="true"/>
 
                 <Button
+                    android:id="@+id/saveAddCheckList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Save"
-                    android:id="@+id/saveAddCheckList"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:onClick="clickAddCheckList" />
+                    android:onClick="clickAddCheckList"
+                    android:text="@string/Save"/>
 
             </LinearLayout>
 

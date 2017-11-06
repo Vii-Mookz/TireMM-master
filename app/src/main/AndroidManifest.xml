@@ -21,6 +21,9 @@
         <activity android:name=".CheckList2Activity" />
         <activity android:name=".itemVehicleActivity" />
         <activity android:name=".AddCheckListActivity"></activity>
+
+
+
     </application>
 
 </manifest>

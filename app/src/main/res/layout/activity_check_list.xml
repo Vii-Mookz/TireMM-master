@@ -10,23 +10,10 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
+
                 tools:context="com.hitachi_tstv.yodpanom.yaowaluk.tiresmanagement.CheckListActivity">
-    <FrameLayout
-        android:id="@+id/toolbar_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary" />
 
-        <com.miguelcatalan.materialsearchview.MaterialSearchView
-            android:id="@+id/search_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -57,7 +44,8 @@
             android:layout_margin="10dp"
             android:layout_marginTop="10dp"
             android:text="@string/checkList_letter"
-            android:textSize="18sp"/>
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
         <SearchView
             android:id="@+id/searchView2"
@@ -67,7 +55,8 @@
         <ListView
             android:id="@+id/listView2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            />
 
     </LinearLayout>
 

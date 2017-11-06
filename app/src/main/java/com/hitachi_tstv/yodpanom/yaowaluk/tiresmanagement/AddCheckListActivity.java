@@ -18,19 +18,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.FormEncodingBuilder;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Calendar;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 import static com.hitachi_tstv.yodpanom.yaowaluk.tiresmanagement.R.id.spinner2;
 
@@ -70,7 +72,7 @@ public class AddCheckListActivity extends AppCompatActivity {
         serialString = getIntent().getStringExtra("Serial");
         username = getIntent().getStringExtra("username");
 
-       // tireIdTextView.setText("Tire Series ::" + serialString);
+        tireIdTextView.setText("Tire Series :  " + serialString);
 
 
         url = constantUrl.getUrlAddCheckList();
@@ -100,8 +102,10 @@ public class AddCheckListActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(Void... params) {
             try {
+//                OkHttpClient okHttpClient = new OkHttpClient();
                 OkHttpClient okHttpClient = new OkHttpClient();
                 Request.Builder builder = new Request.Builder();
+//                Request.Builder builder = new Request.Builder();
                 Request request = builder.url(myURL).build();
                 Response response = okHttpClient.newCall(request).execute();
                 return response.body().string();
@@ -134,11 +138,12 @@ public class AddCheckListActivity extends AppCompatActivity {
                     }
                 }
 
-                ArrayAdapter arrayAdapter = new ArrayAdapter(context, R.layout.support_simple_spinner_dropdown_item, reasonStrings);
+                ArrayAdapter arrayAdapter = new ArrayAdapter(AddCheckListActivity.this, R.layout.support_simple_spinner_dropdown_item, reasonStrings);
                 reason1Spinner.setAdapter(arrayAdapter);
                 reason2Spinner.setAdapter(arrayAdapter);
 
             } catch (Exception e) {
+                e.printStackTrace();
                 Log.d("Spinner", "e onPostExecute+++" + e.toString());
             }
         }
@@ -198,7 +203,7 @@ public class AddCheckListActivity extends AppCompatActivity {
 
 
         OkHttpClient okHttpClient = new OkHttpClient();
-        RequestBody requestBody = new FormEncodingBuilder()
+        RequestBody requestBody = new FormBody.Builder()
                 .add("isAdd", "true")
                 .add("odo", odoString)
                 .add("deepTread", deepString)
@@ -216,14 +221,12 @@ public class AddCheckListActivity extends AppCompatActivity {
         call.enqueue(new Callback() {
 
             @Override
-            public void onFailure(Request request, IOException e) {
+            public void onFailure(Call call, IOException e) {
                 Log.d("Call", "Failure");
             }
 
-
-
             @Override
-            public void onResponse(Response response) throws IOException {
+            public void onResponse(Call call, Response response) throws IOException {
                 Log.d("Tag",response.body().string());
                 Log.d("Call", "Success");
                 runOnUiThread(new Runnable() {
@@ -237,7 +240,7 @@ public class AddCheckListActivity extends AppCompatActivity {
                         dialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Toast.makeText(AddCheckListActivity.this, "Add Checklist Successful!!", Toast.LENGTH_SHORT).show();
-                            finish();
+                                finish();
                             }
                         });
 
@@ -255,6 +258,47 @@ public class AddCheckListActivity extends AppCompatActivity {
 
 //                finish();
             }
+
+//            @Override
+//            public void onFailure(Request request, IOException e) {
+//                Log.d("Call", "Failure");
+//            }
+//
+//
+//
+//            @Override
+//            public void onResponse(Response response) throws IOException {
+//                Log.d("Tag",response.body().string());
+//                Log.d("Call", "Success");
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        dialog.setTitle(R.string.alert);
+//                        dialog.setCancelable(true);
+//                        dialog.setIcon(R.drawable.warning);
+//                        dialog.setMessage(R.string.dialog_save);
+//
+//                        dialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                Toast.makeText(AddCheckListActivity.this, "Add Checklist Successful!!", Toast.LENGTH_SHORT).show();
+//                            finish();
+//                            }
+//                        });
+//
+//                        dialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                dialog.cancel();
+//                            }
+//                        });
+//
+//                        dialog.show();
+//                    }
+//
+//
+//                });
+//
+////                finish();
+//            }
         });
 
 

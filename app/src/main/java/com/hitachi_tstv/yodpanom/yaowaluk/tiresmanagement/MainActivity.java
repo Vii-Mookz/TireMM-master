@@ -3,25 +3,31 @@ package com.hitachi_tstv.yodpanom.yaowaluk.tiresmanagement;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.squareup.okhttp.FormEncodingBuilder;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,8 +44,17 @@ public class MainActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.edit_username);
         password = (EditText) findViewById(R.id.edit_password);
         signInButton = (Button) findViewById(R.id.button);
+//
+//
+//        SpannableString s = new SpannableString("My Title");
+//        s.setSpan(new TypefaceSpan(this, "MyTypeface.otf"), 0, s.length(),
+//                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
+        // Update the action bar title with the TypefaceSpan instance
 
+//        ActionBar actionBar=getSupportActionBar();
+//        actionBar.setTitle(R.string.app_name);
+//actionBar.
 
         ConstantUrl constantUrl = new ConstantUrl();
         url = constantUrl.getUrlJSONuser();
@@ -79,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 OkHttpClient okHttpClient = new OkHttpClient();
-                RequestBody requestBody = new FormEncodingBuilder()
+                RequestBody requestBody = new FormBody.Builder()
                         .add("username", username)
                         .add("password", password).build();
                 Request.Builder builder = new Request.Builder();
@@ -114,12 +129,12 @@ public class MainActivity extends AppCompatActivity {
                 if (aBoolean) {
                     Intent intent = new Intent(MainActivity.this, CheckListActivity.class);
                     intent.putExtra("username", username);
-                    Toast.makeText(context, "Login Successful!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.login_success, Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                     finish();
                 }
                 else {
-                    Toast.makeText(context, "User/Pass is wrong", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, R.string.login_fail, Toast.LENGTH_LONG).show();
                 }
 
             } catch (JSONException e) {

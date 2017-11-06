@@ -13,11 +13,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.squareup.okhttp.FormEncodingBuilder;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,6 +27,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class itemVehicleActivity extends AppCompatActivity {
 
@@ -128,7 +130,7 @@ public class itemVehicleActivity extends AppCompatActivity {
         protected String doInBackground(Void... params) {
             try {
                 OkHttpClient okHttpClient = new OkHttpClient();
-                RequestBody requestBody = new FormEncodingBuilder().add("isSearch", "true").add("veh_id", vehIdString).build();
+                RequestBody requestBody = new FormBody.Builder().add("isSearch", "true").add("veh_id", vehIdString).build();
                 Request.Builder builder = new Request.Builder();
                 Request request = builder.url(formatURL).post(requestBody).build();
                 Response response = okHttpClient.newCall(request).execute();
