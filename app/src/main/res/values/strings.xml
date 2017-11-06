@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TiresManagement</string>
+    <string name="checkList_letter">Check tire pressure and tread depth</string>
+    <string name="alert">Alert</string>
+    <string name="dialog_save">Do you want to save?</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="username">Usernname</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <item type="id" name="Tire_ID"/>
+    <item type="id" name="Tire_Serial"/>
+</resources>

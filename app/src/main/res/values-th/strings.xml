@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TiresManagement</string>
+    <string name="alert">แจ้งเตือน</string>
+    <string name="dialog_save">คุณต้องการบันทึกข้อมูลใช่หรือไม่</string>
+    <string name="yes">ตกลง</string>
+    <string name="no">ยกเลิก</string>
+    <string name="checkList_letter">ตรวจเช็คลมยางและความลึกดอกยาง</string>
+    <string name="username">ชื่อผู้ใช้งาน</string>
+    <string name="password">รหัสผ่าน</string>
+    <string name="login">เข้าสู่ระบบ</string>
+</resources>
