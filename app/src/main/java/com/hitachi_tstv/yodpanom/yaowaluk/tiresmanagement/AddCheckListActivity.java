@@ -104,6 +104,7 @@ public class AddCheckListActivity extends AppCompatActivity {
                 }
 
                 ArrayAdapter arrayAdapter = new ArrayAdapter(AddCheckListActivity.this, R.layout.support_simple_spinner_dropdown_item, reasonStrings);
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 reason1Spinner.setAdapter(arrayAdapter);
                 reason2Spinner.setAdapter(arrayAdapter);
 

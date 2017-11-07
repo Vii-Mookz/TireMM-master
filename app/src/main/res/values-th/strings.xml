@@ -16,5 +16,5 @@
     <string name="odo">ไมล์สะสม</string>
     <string name="pressure">แรงดันลมยาง</string>
     <string name="deep_tread">ความลึกของดอกยาง</string>
-
+    <string name="reason">กรุณาเลือกเหตุผล</string>
 </resources>
