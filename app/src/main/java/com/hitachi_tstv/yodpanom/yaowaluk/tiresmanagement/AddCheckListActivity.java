@@ -2,6 +2,7 @@ package com.hitachi_tstv.yodpanom.yaowaluk.tiresmanagement;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
@@ -48,42 +49,6 @@ public class AddCheckListActivity extends AppCompatActivity {
 
     static final int  DATE_DIALOG_ID = 999;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//
-        setContentView(R.layout.activity_add_check_list);
-
-        ConstantUrl constantUrl = new ConstantUrl();
-
-        tireIdTextView = (TextView) findViewById(R.id.textView5);
-        odoEditText = (EditText) findViewById(R.id.editText3);
-        deepEditText = (EditText) findViewById(R.id.editText5);
-        presureEditText = (EditText) findViewById(R.id.editText4);
-      //  commentEditText = (EditText) findViewById(R.id.editText7);
-        checkDatePicker = (DatePicker) findViewById(R.id.datePicker);
-        reason1Spinner = (Spinner) findViewById(R.id.spinner);
-        reason2Spinner = (Spinner) findViewById(R.id.spinner2);
-        btn_save = (Button) findViewById(R.id.saveAddCheckList);
-
-        setCurrentDateOnView();
-
-        tireIdString = getIntent().getStringExtra("ID");
-        serialString = getIntent().getStringExtra("Serial");
-        username = getIntent().getStringExtra("username");
-
-        tireIdTextView.setText("Tire Series :  " + serialString);
-
-
-        url = constantUrl.getUrlAddCheckList();
-        urlReason = constantUrl.getUrlJSONReason();
-
-        SyncReason syncReason = new SyncReason(reason1Spinner, this, urlReason);
-        syncReason.execute();
-
-
-
-    }//main method
 
 
     private class SyncReason extends AsyncTask<Void, Void, String> {
@@ -111,9 +76,9 @@ public class AddCheckListActivity extends AppCompatActivity {
                 return response.body().string();
 
             } catch (Exception e) {
-
+                e.printStackTrace();
                 Log.d("Spinner", "e doInBack ==> " + e.toString());
-                return null;
+                return "";
             }
 
         }
@@ -256,52 +221,47 @@ public class AddCheckListActivity extends AppCompatActivity {
 
                 });
 
-//                finish();
             }
 
-//            @Override
-//            public void onFailure(Request request, IOException e) {
-//                Log.d("Call", "Failure");
-//            }
-//
-//
-//
-//            @Override
-//            public void onResponse(Response response) throws IOException {
-//                Log.d("Tag",response.body().string());
-//                Log.d("Call", "Success");
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        dialog.setTitle(R.string.alert);
-//                        dialog.setCancelable(true);
-//                        dialog.setIcon(R.drawable.warning);
-//                        dialog.setMessage(R.string.dialog_save);
-//
-//                        dialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                Toast.makeText(AddCheckListActivity.this, "Add Checklist Successful!!", Toast.LENGTH_SHORT).show();
-//                            finish();
-//                            }
-//                        });
-//
-//                        dialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                dialog.cancel();
-//                            }
-//                        });
-//
-//                        dialog.show();
-//                    }
-//
-//
-//                });
-//
-////                finish();
-//            }
         });
 
 
     }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setContentView(R.layout.activity_add_check_list);
+
+        ConstantUrl constantUrl = new ConstantUrl();
+
+        tireIdTextView = (TextView) findViewById(R.id.textView5);
+        odoEditText = (EditText) findViewById(R.id.editText3);
+        deepEditText = (EditText) findViewById(R.id.editText5);
+        presureEditText = (EditText) findViewById(R.id.editText4);
+        //  commentEditText = (EditText) findViewById(R.id.editText7);
+        checkDatePicker = (DatePicker) findViewById(R.id.datePicker);
+        reason1Spinner = (Spinner) findViewById(R.id.spinner);
+        reason2Spinner = (Spinner) findViewById(R.id.spinner2);
+        btn_save = (Button) findViewById(R.id.saveAddCheckList);
+
+        setCurrentDateOnView();
+
+        tireIdString = getIntent().getStringExtra("ID");
+        serialString = getIntent().getStringExtra("Serial");
+        username = getIntent().getStringExtra("username");
+
+        tireIdTextView.setText("Tire Series :  " + serialString);
+
+
+        url = constantUrl.getUrlAddCheckList();
+        urlReason = constantUrl.getUrlJSONReason();
+
+        SyncReason syncReason = new SyncReason(reason1Spinner, this, urlReason);
+        syncReason.execute();
+
+
+
+    }//main method
 
 }//main class
