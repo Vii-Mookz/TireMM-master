@@ -17,6 +17,7 @@
     <string name="pressure">Pressure</string>
     <string name="deep_tread">Deep Tread</string>
 <string name="reason">Select Reason</string>
+    <string name="add_success">Add Checklist Successful!!</string>
     <item type="id" name="Tire_ID"/>
     <item type="id" name="Tire_Serial"/>
 </resources>

@@ -49,6 +49,42 @@ public class AddCheckListActivity extends AppCompatActivity {
 
     static final int  DATE_DIALOG_ID = 999;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setContentView(R.layout.activity_add_check_list);
+
+        ConstantUrl constantUrl = new ConstantUrl();
+
+        tireIdTextView = (TextView) findViewById(R.id.textView5);
+        odoEditText = (EditText) findViewById(R.id.editText3);
+        deepEditText = (EditText) findViewById(R.id.editText5);
+        presureEditText = (EditText) findViewById(R.id.editText4);
+        //  commentEditText = (EditText) findViewById(R.id.editText7);
+        checkDatePicker = (DatePicker) findViewById(R.id.datePicker);
+        reason1Spinner = (Spinner) findViewById(R.id.spinner);
+        reason2Spinner = (Spinner) findViewById(R.id.spinner2);
+        btn_save = (Button) findViewById(R.id.saveAddCheckList);
+
+        setCurrentDateOnView();
+
+        tireIdString = getIntent().getStringExtra("ID");
+        serialString = getIntent().getStringExtra("Serial");
+        username = getIntent().getStringExtra("username");
+
+        tireIdTextView.setText("Tire Series :  " + serialString);
+
+
+        url = constantUrl.getUrlAddCheckList();
+        urlReason = constantUrl.getUrlJSONReason();
+
+        SyncReason syncReason = new SyncReason(reason1Spinner, this, urlReason);
+        syncReason.execute();
+
+
+    }//main method
+
 
 
     private class SyncReason extends AsyncTask<Void, Void, String> {
@@ -94,7 +130,8 @@ public class AddCheckListActivity extends AppCompatActivity {
 
                 for(int i = 0;i < jsonArray.length();i++){
                     if(i==0){
-                        reasonStrings[i] = "--select reason--";
+                        String re = context.getString(R.string.reason);
+                        reasonStrings[i] = "--" +re +"--";
                         idStrings[i] = "";
                     }else {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -205,7 +242,7 @@ public class AddCheckListActivity extends AppCompatActivity {
 
                         dialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(AddCheckListActivity.this, "Add Checklist Successful!!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AddCheckListActivity.this, R.string.add_success, Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                         });
@@ -228,41 +265,5 @@ public class AddCheckListActivity extends AppCompatActivity {
 
 
     }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.activity_add_check_list);
-
-        ConstantUrl constantUrl = new ConstantUrl();
-
-        tireIdTextView = (TextView) findViewById(R.id.textView5);
-        odoEditText = (EditText) findViewById(R.id.editText3);
-        deepEditText = (EditText) findViewById(R.id.editText5);
-        presureEditText = (EditText) findViewById(R.id.editText4);
-        //  commentEditText = (EditText) findViewById(R.id.editText7);
-        checkDatePicker = (DatePicker) findViewById(R.id.datePicker);
-        reason1Spinner = (Spinner) findViewById(R.id.spinner);
-        reason2Spinner = (Spinner) findViewById(R.id.spinner2);
-        btn_save = (Button) findViewById(R.id.saveAddCheckList);
-
-        setCurrentDateOnView();
-
-        tireIdString = getIntent().getStringExtra("ID");
-        serialString = getIntent().getStringExtra("Serial");
-        username = getIntent().getStringExtra("username");
-
-        tireIdTextView.setText("Tire Series :  " + serialString);
-
-
-        url = constantUrl.getUrlAddCheckList();
-        urlReason = constantUrl.getUrlJSONReason();
-
-        SyncReason syncReason = new SyncReason(reason1Spinner, this, urlReason);
-        syncReason.execute();
-
-
-
-    }//main method
 
 }//main class

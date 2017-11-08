@@ -17,4 +17,5 @@
     <string name="pressure">แรงดันลมยาง</string>
     <string name="deep_tread">ความลึกของดอกยาง</string>
     <string name="reason">กรุณาเลือกเหตุผล</string>
+    <string name="add_success">บันทึกข้อมูลสำเร็จ!!</string>
 </resources>
