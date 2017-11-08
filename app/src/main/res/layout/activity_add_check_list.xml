@@ -86,7 +86,9 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:onClick="clickAddCheckList"
-                    android:text="@string/Save"/>
+                    android:text="@string/Save"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
 

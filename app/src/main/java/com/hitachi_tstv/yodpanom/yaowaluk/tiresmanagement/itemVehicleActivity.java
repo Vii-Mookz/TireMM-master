@@ -2,6 +2,10 @@ package com.hitachi_tstv.yodpanom.yaowaluk.tiresmanagement;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -74,7 +78,7 @@ public class itemVehicleActivity extends AppCompatActivity {
         tv154TextView = (TextView) findViewById(R.id.tv154);
         tv164TextView = (TextView) findViewById(R.id.tv164);
         tvspTextView = (TextView) findViewById(R.id.tvsp);
-
+//
         imageView11 = (ImageView) findViewById(R.id.iv11);
         imageView21 = (ImageView) findViewById(R.id.iv21);
         imageView31 = (ImageView) findViewById(R.id.iv31);
@@ -210,12 +214,17 @@ public class itemVehicleActivity extends AppCompatActivity {
                     Log.d("Value", "arrKey ==> " + e.getKey());
                     Log.d("Value", "arrValue ==> " + e.getValue());
 
+
             if (e.getKey().equals("11")) {
                 // arrMap.put("21", e.getValue().toString());
+
                 if (e.getValue().equals("null")) {
+
+
                     imageView21.setImageResource(R.drawable.tire_null);
                     imageView21.setTag(R.id.Tire_ID, "");
                 } else {
+
                     imageView21.setImageResource(R.drawable.tire);
                     tv21TextView.setText(seriesMap.get(e.getValue()));
                     imageView21.setTag(R.id.Tire_ID,e.getValue());
@@ -228,6 +237,7 @@ public class itemVehicleActivity extends AppCompatActivity {
                     imageView31.setImageResource(R.drawable.tire_null);
                     imageView31.setTag(R.id.Tire_ID, "");
                 } else {
+
                     imageView31.setImageResource(R.drawable.tire);
                     tv31TextView.setText(seriesMap.get(e.getValue()));
                     imageView31.setTag(R.id.Tire_ID,e.getValue());
@@ -237,6 +247,7 @@ public class itemVehicleActivity extends AppCompatActivity {
             }
             if (e.getKey().equals("32")) {
                 if (e.getValue().equals("null")) {
+
                     imageView52.setImageResource(R.drawable.tire_null);
                     imageView52.setTag(R.id.Tire_ID, "");
                 } else {
@@ -248,9 +259,11 @@ public class itemVehicleActivity extends AppCompatActivity {
             }
             if (e.getKey().equals("42")) {
                 if (e.getValue().equals("null")) {
+
                     imageView62.setImageResource(R.drawable.tire_null);
                     imageView62.setTag(R.id.Tire_ID, "");
                 } else {
+
                     imageView62.setImageResource(R.drawable.tire);
                     tv62TextView.setText(seriesMap.get(e.getValue()));
                     imageView62.setTag(R.id.Tire_ID,e.getValue());
@@ -259,9 +272,11 @@ public class itemVehicleActivity extends AppCompatActivity {
             }
             if (e.getKey().equals("52")) {
                 if (e.getValue().equals("null")) {
+
                     imageView72.setImageResource(R.drawable.tire_null);
                     imageView72.setTag(R.id.Tire_ID, "");
                 } else {
+
                     imageView72.setImageResource(R.drawable.tire);
                     tv72TextView.setText(seriesMap.get(e.getValue()));
                     imageView72.setTag(R.id.Tire_ID,e.getValue());
@@ -270,6 +285,7 @@ public class itemVehicleActivity extends AppCompatActivity {
             }
             if (e.getKey().equals("62")) {
                 if (e.getValue().equals("null")) {
+
                     imageView82.setImageResource(R.drawable.tire_null);
                     imageView82.setTag(R.id.Tire_ID, "");
                 } else {

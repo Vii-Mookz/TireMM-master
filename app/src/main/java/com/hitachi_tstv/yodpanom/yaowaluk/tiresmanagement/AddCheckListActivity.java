@@ -50,8 +50,6 @@ public class AddCheckListActivity extends AppCompatActivity {
     private DatePicker checkDatePicker;
     private Spinner reason1Spinner, reason2Spinner;
     private Button btn_save;
-
-    private ArrayList<String> mThaiClub = new ArrayList<String>();
     static final int  DATE_DIALOG_ID = 999;
 
     @Override
@@ -135,8 +133,8 @@ public class AddCheckListActivity extends AppCompatActivity {
 
                 for(int i = 0;i < jsonArray.length();i++){
                     if(i==0){
-                        String re = context.getString(R.string.reason);
-                        reasonStrings[i] = re;
+                        String reason = context.getString(R.string.reason);
+                        reasonStrings[i] = "--"+reason+"--";
                         idStrings[i] = "";
                     }else {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -144,10 +142,6 @@ public class AddCheckListActivity extends AppCompatActivity {
                         idStrings[i] = jsonObject.getString("res_id");
                     }
                 }
-
-//                ArrayAdapter<String> adapterThai = new ArrayAdapter<String>(AddCheckListActivity.this,
-//                        android.R.layout.simple_dropdown_item_1line, mThaiClub);
-//                reason1Spinner.setAdapter(adapterThai);
 
                 ArrayAdapter arrayAdapter = new ArrayAdapter(AddCheckListActivity.this, R.layout.support_simple_spinner_dropdown_item, reasonStrings);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -273,14 +267,12 @@ public class AddCheckListActivity extends AppCompatActivity {
                         dialog.setCancelable(true);
                         dialog.setIcon(R.drawable.warning);
                         dialog.setMessage(R.string.dialog_save);
-
                         dialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Toast.makeText(AddCheckListActivity.this, R.string.add_success, Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                         });
-
                         dialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
@@ -296,8 +288,6 @@ public class AddCheckListActivity extends AppCompatActivity {
             }
 
         });
-
-
     }
 
 }//main class
