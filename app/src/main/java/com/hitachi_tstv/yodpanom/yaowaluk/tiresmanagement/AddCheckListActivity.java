@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -25,7 +26,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -35,6 +38,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.hitachi_tstv.yodpanom.yaowaluk.tiresmanagement.R.id.spinner;
 import static com.hitachi_tstv.yodpanom.yaowaluk.tiresmanagement.R.id.spinner2;
 
 public class AddCheckListActivity extends AppCompatActivity {
@@ -47,6 +51,7 @@ public class AddCheckListActivity extends AppCompatActivity {
     private Spinner reason1Spinner, reason2Spinner;
     private Button btn_save;
 
+    private ArrayList<String> mThaiClub = new ArrayList<String>();
     static final int  DATE_DIALOG_ID = 999;
 
     @Override
@@ -114,7 +119,7 @@ public class AddCheckListActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.d("Spinner", "e doInBack ==> " + e.toString());
-                return "";
+                return null;
             }
 
         }
@@ -125,13 +130,13 @@ public class AddCheckListActivity extends AppCompatActivity {
             Log.d("Spinner", "e onPostExecute---->" +s);
             try {
                 JSONArray jsonArray = new JSONArray(s);
-                reasonStrings = new String[jsonArray.length()+1];
-                idStrings = new String[jsonArray.length()+1];
+                reasonStrings = new String[jsonArray.length()];
+                idStrings = new String[jsonArray.length()];
 
                 for(int i = 0;i < jsonArray.length();i++){
                     if(i==0){
                         String re = context.getString(R.string.reason);
-                        reasonStrings[i] = "--" +re +"--";
+                        reasonStrings[i] = re;
                         idStrings[i] = "";
                     }else {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -140,14 +145,43 @@ public class AddCheckListActivity extends AppCompatActivity {
                     }
                 }
 
+//                ArrayAdapter<String> adapterThai = new ArrayAdapter<String>(AddCheckListActivity.this,
+//                        android.R.layout.simple_dropdown_item_1line, mThaiClub);
+//                reason1Spinner.setAdapter(adapterThai);
+
                 ArrayAdapter arrayAdapter = new ArrayAdapter(AddCheckListActivity.this, R.layout.support_simple_spinner_dropdown_item, reasonStrings);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 reason1Spinner.setAdapter(arrayAdapter);
                 reason2Spinner.setAdapter(arrayAdapter);
+                Log.d("Log" , String.valueOf(arrayAdapter));
+
+//                final AlertDialog.Builder viewDetail = new AlertDialog.Builder(AddCheckListActivity.this);
+                reason1Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    }
+
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+                reason2Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    }
+
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
 
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.d("Spinner", "e onPostExecute+++" + e.toString());
+
             }
         }
     }

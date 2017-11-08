@@ -56,14 +56,18 @@
 
                 <Spinner
                     android:id="@+id/spinner"
+
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
 
                 <Spinner
                     android:id="@+id/spinner2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"/>
 
                 <DatePicker
                     android:id="@+id/datePicker"
