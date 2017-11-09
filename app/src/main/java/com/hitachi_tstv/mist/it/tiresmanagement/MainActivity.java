@@ -1,15 +1,10 @@
-package com.hitachi_tstv.yodpanom.yaowaluk.tiresmanagement;
+package com.hitachi_tstv.mist.it.tiresmanagement;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +12,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-import org.json.JSONArray;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
         username = (EditText) findViewById(R.id.edit_username);

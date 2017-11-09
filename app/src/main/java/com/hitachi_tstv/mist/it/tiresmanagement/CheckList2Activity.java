@@ -1,4 +1,4 @@
-package com.hitachi_tstv.yodpanom.yaowaluk.tiresmanagement;
+package com.hitachi_tstv.mist.it.tiresmanagement;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

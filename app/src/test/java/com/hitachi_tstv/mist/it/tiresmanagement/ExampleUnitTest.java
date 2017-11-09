@@ -1,4 +1,4 @@
-package com.hitachi_tstv.yodpanom.yaowaluk.tiresmanagement;
+package com.hitachi_tstv.mist.it.tiresmanagement;
 
 import org.junit.Test;
 

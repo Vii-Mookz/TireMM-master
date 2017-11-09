@@ -1,4 +1,4 @@
-package com.hitachi_tstv.yodpanom.yaowaluk.tiresmanagement;
+package com.hitachi_tstv.mist.it.tiresmanagement;
 
 /**
  * Created by musz on 7/25/2016.

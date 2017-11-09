@@ -1,11 +1,9 @@
-package com.hitachi_tstv.yodpanom.yaowaluk.tiresmanagement;
+package com.hitachi_tstv.mist.it.tiresmanagement;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,9 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -37,9 +33,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
-import static com.hitachi_tstv.yodpanom.yaowaluk.tiresmanagement.R.id.spinner;
-import static com.hitachi_tstv.yodpanom.yaowaluk.tiresmanagement.R.id.spinner2;
 
 public class AddCheckListActivity extends AppCompatActivity {
 
